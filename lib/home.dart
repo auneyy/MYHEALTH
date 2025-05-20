@@ -10,16 +10,28 @@ class Home extends StatelessWidget {
     return Scaffold(
       appBar: const CustomAppBar(title: 'Home'),
       bottomNavigationBar: CustomBottomNavBar(
-        currentIndex: 1, // index untuk Home
-        onTap: (index) {
-          // Navigasi bisa disesuaikan
-          if (index == 0) {
-            Navigator.pushNamed(context, '/jadwal');
-          } else if (index == 2) {
-            Navigator.pushNamed(context, '/screening');
-          }
-        },
-      ),
+  currentIndex: 2,
+  onTap: (index) {
+    switch (index) {
+      case 0:
+        Navigator.pushNamed(context, '/home');
+        break;
+      case 1:
+        Navigator.pushNamed(context, '/jadwal');
+        break;
+      case 2:
+        Navigator.pushNamed(context, '/profil');
+        break;
+      case 3:
+        Navigator.pushNamed(context, '/obat');
+        break;
+      case 4:
+        Navigator.pushNamed(context, '/riwayat');
+        break;
+    }
+  },
+),
+
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(20),
         child: Column(
@@ -42,6 +54,7 @@ class Home extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 50),
+
             // Search bar
             Align(
               alignment: Alignment.center,
@@ -63,14 +76,14 @@ class Home extends StatelessWidget {
                 ),
               ),
             ),
-
             const SizedBox(height: 20),
+
             // Kartu Selamat Datang
             Container(
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
                 color: Colors.white,
-                border: Border.all(color: const Color(0xFF14482F), width: 2),
+                border: Border.all(color: Color(0xFF14482F), width: 2),
                 borderRadius: BorderRadius.circular(16),
                 boxShadow: [
                   BoxShadow(
@@ -110,7 +123,7 @@ class Home extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(width: 12),
-                  // Kanan: Gambar PNG
+                  // Kanan: Gambar
                   Expanded(
                     flex: 1,
                     child: Image.asset('assets/images/orang.png', height: 150),
@@ -119,16 +132,14 @@ class Home extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 18),
+
             // Dua tombol kotak
             Row(
               children: [
                 Expanded(
                   child: GestureDetector(
                     onTap: () {
-                      Navigator.pushNamed(
-                        context,
-                        '/petugas',
-                      ); // ke cari petugas ygy
+                      Navigator.pushNamed(context, '/petugas');
                     },
                     child: Container(
                       height: 150,
@@ -156,47 +167,46 @@ class Home extends StatelessWidget {
                     ),
                   ),
                 ),
-
                 Expanded(
-  child: GestureDetector(
-    onTap: () {
-      Navigator.pushNamed(context, '/petugas'); // Ganti dengan route yang sesuai
-    },
-    child: Container(
-      height: 150,
-      margin: const EdgeInsets.only(right: 8),
-      decoration: BoxDecoration(
-        color: const Color(0xFF14482F),
-        borderRadius: BorderRadius.circular(12),
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: const [
-          Icon(Icons.medical_information_sharp, color: Colors.white, size: 30),
-          SizedBox(height: 20),
-          Text(
-            'Tanya Dokter\nUKS Kamu',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontFamily: 'Poppins',
-              color: Colors.white,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ],
-      ),
-    ),
-  ),
-),
-
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.pushNamed(context, '/dokterAI');
+                    },
+                    child: Container(
+                      height: 150,
+                      margin: const EdgeInsets.only(left: 8),
+                      decoration: BoxDecoration(
+                        color: const Color(0xFF14482F),
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: const [
+                          Icon(Icons.medical_services, color: Colors.white, size: 30),
+                          SizedBox(height: 20),
+                          Text(
+                            'Tanya Dokter\nUKS Kamu',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontFamily: 'Poppins',
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
               ],
             ),
             const SizedBox(height: 18),
+
             // Kotak Ambil Obat
             Container(
               padding: const EdgeInsets.all(40),
               decoration: BoxDecoration(
-                color: Color(0xFF1A3427),
+                color: const Color(0xFF1A3427),
                 borderRadius: BorderRadius.circular(12),
               ),
               child: Row(

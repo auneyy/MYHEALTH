@@ -5,6 +5,7 @@ import 'package:myhealth/daftar.dart';
 import 'package:myhealth/home.dart';
 import 'package:myhealth/masuk.dart';
 import 'package:myhealth/welcome_screen.dart';
+import 'package:myhealth/dokter_ai.dart';
 import 'splash_screen.dart';
 
 void main() {
@@ -18,6 +19,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      title: 'MyHealth',
+      theme: ThemeData(
+        fontFamily: 'Poppins',
+        scaffoldBackgroundColor: Colors.white,
+      ),
       initialRoute: '/',
       routes: {
         '/': (context) => const SplashScreen(),
@@ -26,6 +32,7 @@ class MyApp extends StatelessWidget {
         '/Daftar': (context) => const Daftar(),
         '/Home': (context) => const Home(),
         '/petugas': (context) => const CariPetugas(),
+        '/dokterAI': (context) => const DokterAIPage(),
       },
       onGenerateRoute: (settings) {
         if (settings.name == '/chat') {

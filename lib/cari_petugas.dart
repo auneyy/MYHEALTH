@@ -28,17 +28,30 @@ class CariPetugas extends StatelessWidget {
     ];
 
     return Scaffold(
-      appBar: const CustomAppBar(title: 'PETUGAS UKS'),
+      appBar: const CustomAppBar(title: 'Home'),
       bottomNavigationBar: CustomBottomNavBar(
-        currentIndex: 1,
-        onTap: (index) {
-          if (index == 0) {
-            Navigator.pushNamed(context, '/jadwal');
-          } else if (index == 2) {
-            Navigator.pushNamed(context, '/screening');
-          }
-        },
-      ),
+  currentIndex: 2,
+  onTap: (index) {
+    switch (index) {
+      case 0:
+        Navigator.pushNamed(context, '/home');
+        break;
+      case 1:
+        Navigator.pushNamed(context, '/jadwal');
+        break;
+      case 2:
+        Navigator.pushNamed(context, '/profil');
+        break;
+      case 3:
+        Navigator.pushNamed(context, '/obat');
+        break;
+      case 4:
+        Navigator.pushNamed(context, '/riwayat');
+        break;
+    }
+  },
+),
+
       body: Padding(
         padding: const EdgeInsets.all(20),
         child: Column(
