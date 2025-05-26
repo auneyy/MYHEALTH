@@ -3,77 +3,85 @@ import 'custom_bottom_navbar.dart';
 import 'custom_appbar.dart';
 import 'chat_page.dart'; // ✅ Tambahkan ini
 
-class CariPetugas extends StatelessWidget {
+class CariPetugas extends StatefulWidget {
   const CariPetugas({super.key});
 
   @override
+  State<CariPetugas> createState() => _CariPetugasState();
+}
+
+class _CariPetugasState extends State<CariPetugas> {
+  List<Map<String, dynamic>> petugasList = [
+    {
+      'nama': 'Cristiano Ronaldo',
+      'kelas': 'Petugas UKS X RPL B',
+      'isOnline': true,
+    },
+    {
+      'nama': 'Lionel Messi',
+      'kelas': 'Petugas UKS XI RPL A',
+      'isOnline': true,
+    },
+    {
+      'nama': 'Kylian Mbappé',
+      'kelas': 'Petugas UKS XII RPL C',
+      'isOnline': false,
+    },
+  ];
+
+  @override
   Widget build(BuildContext context) {
-    // Contoh data petugas
-    final List<Map<String, dynamic>> petugasList = [
-      {
-        'nama': 'Cristiano Ronaldo',
-        'kelas': 'Petugas UKS X RPL B',
-        'isOnline': true,
-      },
-      {
-        'nama': 'Cristiano Ronaldo',
-        'kelas': 'Petugas UKS X RPL B',
-        'isOnline': true,
-      },
-      {
-        'nama': 'Cristiano Ronaldo',
-        'kelas': 'Petugas UKS X RPL B',
-        'isOnline': false,
-      },
-    ];
-
     return Scaffold(
-      appBar: const CustomAppBar(title: 'Home'),
+      appBar: const CustomAppBar(title: 'Petugas UKS'),
       bottomNavigationBar: CustomBottomNavBar(
-  currentIndex: 2,
-  onTap: (index) {
-    switch (index) {
-      case 0:
-        Navigator.pushNamed(context, '/home');
-        break;
-      case 1:
-        Navigator.pushNamed(context, '/jadwal');
-        break;
-      case 2:
-        Navigator.pushNamed(context, '/profil');
-        break;
-      case 3:
-        Navigator.pushNamed(context, '/obat');
-        break;
-      case 4:
-        Navigator.pushNamed(context, '/riwayat');
-        break;
-    }
-  },
-),
-
+        currentIndex: 2,
+        onTap: (index) {
+          switch (index) {
+            case 0:
+              Navigator.pushNamed(context, '/home');
+              break;
+            case 1:
+              Navigator.pushNamed(context, '/jadwal');
+              break;
+            case 2:
+              Navigator.pushNamed(context, '/profil');
+              break;
+            case 3:
+              Navigator.pushNamed(context, '/obat');
+              break;
+            case 4:
+              Navigator.pushNamed(context, '/riwayat');
+              break;
+          }
+        },
+      ),
       body: Padding(
         padding: const EdgeInsets.all(20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // 🔙 Tombol kembali
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 10.0),
-              child: Row(
-                children: [
-                  IconButton(
-                    icon: const Icon(Icons.arrow_back, color: Color(0xFF14482F)),
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                  ),
-                  const SizedBox(width: 8),
-                ],
-              ),
-            ),
 
-            // 🔍 Search Bar
+            Align(
+      alignment: Alignment.centerLeft,
+      child: TextButton.icon(
+        onPressed: () {
+          Navigator.pushNamed(context, '/home');
+        },
+        icon: const Icon(Icons.arrow_back, color: Color(0xFF14482F)),
+        label: const Text(
+          'Kembali',
+          style: TextStyle(
+            color: Color(0xFF14482F),
+            fontWeight: FontWeight.w600,
+            fontSize: 14,
+          ),
+        ),
+      ),
+    ),
+
+    const SizedBox(height: 10),
+
+            // Search Bar
             Container(
               margin: const EdgeInsets.symmetric(horizontal: 16),
               padding: const EdgeInsets.symmetric(horizontal: 12),
@@ -92,7 +100,7 @@ class CariPetugas extends StatelessWidget {
 
             const SizedBox(height: 20),
 
-            // 📋 Daftar Petugas
+            // Daftar Petugas
             Expanded(
               child: ListView.builder(
                 itemCount: petugasList.length,
@@ -163,10 +171,10 @@ class CariPetugas extends StatelessWidget {
                               const SizedBox(height: 4),
                               Switch(
                                 value: petugas['isOnline'],
-                                onChanged: (_) {},
+                                onChanged: null,
                                 activeColor: Colors.greenAccent,
-                                inactiveThumbColor: Colors.red,
-                                inactiveTrackColor: Colors.red[200],
+                                inactiveThumbColor: const Color.fromARGB(255, 223, 255, 231),
+                                inactiveTrackColor: Colors.red,
                               ),
                             ],
                           ),
@@ -183,3 +191,4 @@ class CariPetugas extends StatelessWidget {
     );
   }
 }
+

@@ -6,29 +6,66 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   const CustomAppBar({super.key, required this.title});
 
   @override
-  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
-
-  @override
   Widget build(BuildContext context) {
     return AppBar(
-      title: Text(
-        title,
-        style: const TextStyle(
-          fontFamily: 'Poppins',
-          fontSize: 20,
-          fontWeight: FontWeight.bold,
-          color: Colors.white,
+      backgroundColor: const Color.fromARGB(255, 255, 255, 255),
+      elevation: 10,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(
+          bottom: Radius.circular(20),
         ),
       ),
-      leading: const Icon(Icons.settings, color: Colors.white),
-      actions: [
-        IconButton(
-          onPressed: () {},
-          icon: const Icon(Icons.notifications_rounded, color: Colors.white),
+      automaticallyImplyLeading: false,
+      title: null, // kosongkan
+      centerTitle: true, // meskipun kita pakai flexibleSpace
+      flexibleSpace: SafeArea(
+        child: Stack(
+          alignment: Alignment.center,
+          children: [
+            // Title di tengah
+            Center(
+              child: Text(
+                title.toUpperCase(),
+                style: const TextStyle(
+                  color: Color(0xFF14482F),
+                  fontWeight: FontWeight.bold,
+                  fontSize: 16,
+                  letterSpacing: 1,
+                ),
+              ),
+            ),
+
+            // Icon kiri (Settings)
+            Positioned(
+              left: 8,
+              child: IconButton(
+                icon: const Icon(Icons.settings, color: Color(0xFF14482F)),
+                onPressed: () {
+                  Navigator.pushNamed(context, '/settings');
+                },
+              ),
+            ),
+
+            // Icon kanan (Profile dan Notifikasi)
+            Positioned(
+              right: 0,
+              child: Row(
+                children: [
+                  IconButton(
+                    icon: const Icon(Icons.notifications, color: Color(0xFF14482F)),
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/notifications');
+                    },
+                  ),
+                ],
+              ),
+            ),
+          ],
         ),
-      ],
-      centerTitle: true,
-      backgroundColor: const Color(0xFF14482F),
+      ),
     );
   }
+
+  @override
+  Size get preferredSize => const Size.fromHeight(60);
 }

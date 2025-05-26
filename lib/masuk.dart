@@ -22,7 +22,7 @@ class Masuk extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
                 child: Column(
                   children: [
                     const SizedBox(height: 40),
@@ -46,14 +46,14 @@ class Masuk extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    const SizedBox(height: 20),
+                    const SizedBox(height: 10),
 
                     // Username
                     _inputField(
                       icon: Icons.person,
                       hint: 'Username',
                     ),
-                    const SizedBox(height: 20),
+                    const SizedBox(height: 10),
 
                     // Password
                     _inputField(
@@ -66,11 +66,11 @@ class Masuk extends StatelessWidget {
 
                     ElevatedButton(
                       onPressed: () {
-                        Navigator.pushReplacementNamed(context, '/Home');
+                        Navigator.pushReplacementNamed(context, '/home');
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: const Color(0xFF0B3D2E),
-                        padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
+                        padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 10),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(8),
                         ),
